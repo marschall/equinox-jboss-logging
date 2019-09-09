@@ -9,17 +9,15 @@ import java.text.MessageFormat;
 
 import org.jboss.logging.Logger;
 
+/**
+ * A {@link Logger} that delegates to a {@link org.eclipse.equinox.log.Logger}.
+ */
 final class EquinoxLogger extends Logger {
 
-//  /**
-//   * Anything that is not one of LOG_DEBUG, LOG_ERROR, LOG_INFO, LOG_WARNING is trace.
-//   */
-//  private static final int LOG_TRACE = LOG_DEBUG + 1;
-//  
-//  private static final int LOG_FATAL = LOG_ERROR - 1;
-  
+  private static final long serialVersionUID = 1L;
+
   private final org.eclipse.equinox.log.Logger logger;
-  
+
   EquinoxLogger(String name, org.eclipse.equinox.log.Logger logger) {
     super(name);
     this.logger = logger;
