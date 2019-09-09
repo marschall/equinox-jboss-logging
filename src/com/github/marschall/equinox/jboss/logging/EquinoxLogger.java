@@ -11,12 +11,12 @@ import org.jboss.logging.Logger;
 
 final class EquinoxLogger extends Logger {
 
-  /**
-   * Anything that is not one of LOG_DEBUG, LOG_ERROR, LOG_INFO, LOG_WARNING is trace.
-   */
-  private static final int LOG_TRACE = LOG_DEBUG + 1;
-  
-  private static final int LOG_FATAL = LOG_ERROR - 1;
+//  /**
+//   * Anything that is not one of LOG_DEBUG, LOG_ERROR, LOG_INFO, LOG_WARNING is trace.
+//   */
+//  private static final int LOG_TRACE = LOG_DEBUG + 1;
+//  
+//  private static final int LOG_FATAL = LOG_ERROR - 1;
   
   private final org.eclipse.equinox.log.Logger logger;
   
@@ -27,11 +27,14 @@ final class EquinoxLogger extends Logger {
 
   @Override
   public boolean isEnabled(Level level) {
+    int osgiLevel = toOsgiLevel(level);
+    return this.logger.isLoggable(osgiLevel);
+  }
+
+  private static int toOsgiLevel(Level level) {
     int osgiLevel;
     switch (level) {
     case TRACE:
-      osgiLevel = LOG_TRACE;
-      break;
     case DEBUG:
       osgiLevel = LOG_DEBUG;
       break;
@@ -42,15 +45,13 @@ final class EquinoxLogger extends Logger {
       osgiLevel = LOG_WARNING;
       break;
     case ERROR:
+    case FATAL:
       osgiLevel = LOG_ERROR;
       break;
-    case FATAL:
-      osgiLevel = LOG_FATAL;
-      break;
     default:
-      break;
+      throw new IllegalArgumentException("unknown level: " + level);
     }
-    return this.logger.isLoggable(osgiLevel);
+    return osgiLevel;
   }
 
   @Override
@@ -58,8 +59,15 @@ final class EquinoxLogger extends Logger {
     if (!isEnabled(level)) {
       return;
     }
-    String text = parameters == null || parameters.length == 0 ? String.valueOf(message) : MessageFormat.format(String.valueOf(message), parameters);
-    // TODO Auto-generated method stub
+
+    String text;
+    if (parameters != null && parameters.length > 0) {
+      text = MessageFormat.format(String.valueOf(message), parameters);
+    } else {
+      text = String.valueOf(message);
+    }
+    int osgiLevel = toOsgiLevel(level);
+    this.logger.log(osgiLevel, text, thrown);
   }
 
   @Override
@@ -67,8 +75,14 @@ final class EquinoxLogger extends Logger {
     if (!isEnabled(level)) {
       return;
     }
-    String text = parameters == null ? String.format(format) : String.format(format, parameters);
-    // TODO Auto-generated method stub
+    String text;
+    if (parameters != null) {
+      text = String.format(format, parameters);
+    } else {
+      text = String.format(format);
+    }
+    int osgiLevel = toOsgiLevel(level);
+    this.logger.log(osgiLevel, text, thrown);
 
   }
 
