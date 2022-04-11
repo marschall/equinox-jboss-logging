@@ -48,7 +48,7 @@
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
-      <version>3.4.1.Final</version>
+      <version>3.4.3.Final</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -277,7 +277,7 @@
   </profiles>
 
   <properties>
-    <tycho-version>2.1.0</tycho-version>
+    <tycho-version>2.7.1</tycho-version>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     <source.version>1.8</source.version>
