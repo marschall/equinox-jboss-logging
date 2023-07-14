@@ -32,7 +32,7 @@ public final class EquinoxLoggerProvider implements LoggerProvider {
    */
   public EquinoxLoggerProvider() {
     // this is a bit hairy
-    // since we're a bundle we can't have an activator we have to work around this
+    // since we are fragment and not a bundle we can't have an activator we have to work around this
 
     Bundle bundle = FrameworkUtil.getBundle(EquinoxLoggerProvider.class);
     // start the bundle so that we have a bundle context
