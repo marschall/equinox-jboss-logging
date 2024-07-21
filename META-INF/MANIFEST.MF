@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Fragment-Host: org.jboss.logging.jboss-logging;bundle-version="[3.0.0,4.0.0)"
 Bundle-SymbolicName: com.github.marschall.equinox-jboss-logging;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 3.6.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.marschall</groupId>
   <artifactId>com.github.marschall.equinox-jboss-logging</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>3.6.0-SNAPSHOT</version>
   <name>equinox-jboss-logging</name>
   <packaging>eclipse-plugin</packaging>
 
@@ -76,7 +76,7 @@
             <link>https://osgi.org/javadoc/osgi.core/7.0.0/</link>
             <link>https://javadoc.io/doc/org.jboss.logging/jboss-logging/latest/</link>
           </links>
-          <release>8</release>
+          <release>11</release>
           <notimestamp>true</notimestamp>
         </configuration>
         <executions>
@@ -147,7 +147,6 @@
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>target-platform-configuration</artifactId>
         <configuration>
-          <resolver>p2</resolver>
           <pomDependencies>consider</pomDependencies>
           <environments>
             <environment>
@@ -278,7 +277,7 @@
   </profiles>
 
   <properties>
-    <tycho-version>3.0.5</tycho-version>
+    <tycho-version>4.0.8</tycho-version>
     <project.build.outputTimestamp>2023-07-09T20:32:06Z</project.build.outputTimestamp>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
